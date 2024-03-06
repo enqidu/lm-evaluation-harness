@@ -1,5 +1,5 @@
 dataset_path: Impel/Jailbreak_Sample
-dataset_name: Jailbreak
+dataset_name: default
 task: jailbreak
 output_type: multiple_choice
 process_docs: !function utils.process_docs
