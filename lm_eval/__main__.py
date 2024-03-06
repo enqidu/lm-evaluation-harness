@@ -297,10 +297,8 @@ def cli_evaluate(args: Union[argparse.Namespace, None] = None) -> None:
             output_path_file = path.joinpath("results.json")
 
     # Respect user's value passed in via CLI, otherwise default to True and add to comma-separated model args
-    if args.trust_remote_code:
-        os.environ["HF_DATASETS_TRUST_REMOTE_CODE"] = (
-            args.trust_remote_code if args.trust_remote_code else True
-        )
+    if args.trust_remote_code is not None:
+        os.environ["HF_DATASETS_TRUST_REMOTE_CODE"] = str(args.trust_remote_code)
         args.model_args = (
             args.model_args
             + f",trust_remote_code={os.environ['HF_DATASETS_TRUST_REMOTE_CODE']}"
