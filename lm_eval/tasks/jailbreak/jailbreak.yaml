@@ -1,5 +1,6 @@
 dataset_path: Impel/Jailbreak_Sample
 dataset_name: Jailbreak
+task: jailbreak
 output_type: multiple_choice
 process_docs: !function utils.process_docs
 training_split: train
