@@ -5,7 +5,7 @@ test_split: test
 output_type: multiple_choice
 process_docs: !function utils.process_docs
 training_split: train
-doc_to_text: "{{Instructions}}\nQuestion: {{User}} {{Question}}?\nAnswer:"
+doc_to_text: "{{question}}:"
 doc_to_choice: "{{choices}}"
 doc_to_target: "{{['A', 'B', 'C', 'D'].index(Label)}}"
 metric_list:
