@@ -4,29 +4,27 @@ import datasets
 
 
 def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
-    def _label_to_int(s):
-        if s == 'Choice A':
-            return 1
-        elif s == 'Choice B':
-            return 2
-        elif s == 'Choice C':
-            return 3
-        elif s == 'Choice D':
-            return 4
-        
-    
+                    
     def _process_doc(doc):
-        gold = _label_to_int(doc["Label"])
+        s = doc["Label"]
+        if s == 'A':
+            gold =  1
+        elif s == 'B':
+            gold = 2
+        elif s == 'C':
+            gold = 3
+        elif s == 'D':
+            gold = 4
         instruction = f"""
 ### Context: {doc["Instructions"]}
 ### Question: {doc["User"]} {doc["Question"]}
 ### Options:
-(1) {doc['Choice A']}\n(2) {doc["Choice B"]}\n(3) {doc["Choice C"]}\n(4) {doc['Choice D']}\n
+A {doc['A']}\n(B {doc["B"]}\nC {doc["C"]}\nD {doc['D']}\n
 ### Answer: The correct answer to the given problem is """
 
         out_doc = {
             "question": instruction,
-            "choices": ["(1)", "(2)", "(3)", "(4)"],
+            "choices": ["A", "B", "C", "D"],
             "gold": gold - 1,
         }
         return out_doc
