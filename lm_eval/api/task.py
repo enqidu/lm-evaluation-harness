@@ -1379,7 +1379,8 @@ class MultipleChoiceTask(Task):
         acc = 1.0 if np.argmax(results) == gold else 0.0
         completion_len = np.array([float(len(i)) for i in doc["choices"]])
         acc_norm = 1.0 if np.argmax(results / completion_len) == gold else 0.0
-
+        if acc == 0.0:
+            print("Wrong " + doc, np.argmax(results)+1)
         return {
             "acc": acc,
             "acc_norm": acc_norm,
