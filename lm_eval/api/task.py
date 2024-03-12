@@ -1371,6 +1371,7 @@ class MultipleChoiceTask(Task):
         ]
 
     def process_results(self, doc: dict, results: List[Tuple[float, bool]]) -> dict:
+        print('AAAA')
         results = [
             res[0] for res in results
         ]  # only retain loglikelihoods, discard is_greedy TODO: do we need is_greedy anywhere?
@@ -1381,6 +1382,7 @@ class MultipleChoiceTask(Task):
         acc_norm = 1.0 if np.argmax(results / completion_len) == gold else 0.0
         if acc == 0.0:
             print("Wrong " + doc, np.argmax(results)+1)
+
         return {
             "acc": acc,
             "acc_norm": acc_norm,
