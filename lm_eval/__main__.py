@@ -301,11 +301,7 @@ def cli_evaluate(args: Union[argparse.Namespace, None] = None) -> None:
             path.mkdir(parents=True, exist_ok=True)
 
     # Respect user's value passed in via CLI, otherwise default to True and add to comma-separated model args
-<<<<<<< HEAD
-    if args.trust_remote_code is not None:
-=======
     if args.trust_remote_code:
->>>>>>> upstream/main
         os.environ["HF_DATASETS_TRUST_REMOTE_CODE"] = str(args.trust_remote_code)
         args.model_args = (
             args.model_args
