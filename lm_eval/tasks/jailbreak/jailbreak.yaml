@@ -1,7 +1,7 @@
 dataset_path: Impel/Jailbreak_Sample
 dataset_name: default
 task: jailbreak
-test_split: full
+test_split: test
 output_type: multiple_choice
 process_docs: !function utils.process_docs
 doc_to_text: "{{question}}:"
