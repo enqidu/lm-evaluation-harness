@@ -12,6 +12,7 @@ metric_list:
 filter_list:
   - name: "get-answer"
     filter:
+      - function: remove_whitespace
       - function: "regex"
         # starts with A-D excluding leading spaces
         # original implementation uses a.startswith(b)
