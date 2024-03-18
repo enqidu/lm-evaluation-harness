@@ -49,6 +49,32 @@ class RegexFilter(Filter):
         return filtered_resps
 
 
+class ParenthesisFilter(Filter):
+    """A filter that removes leading parentheses from responses."""
+
+    def __init__(self) -> None:
+        """Initializes the ParenthesisFilter."""
+        pass
+
+    def apply(self, resps, docs):
+        """Applies the filter to remove leading parentheses from each response."""
+        def filter_set(inst):
+            filtered_resp = []
+            for resp in inst:
+                # Remove a leading opening or closing parenthesis
+                if resp.startswith("(") or resp.startswith(")"):
+                    resp = resp[1:]
+
+                filtered_resp.append(resp)
+
+            return filtered_resp
+
+        # Apply the filter set function to each response in resps
+        filtered_resps = [filter_set(resp) for resp in resps]
+
+        return filtered_resps
+ 
+
 class WhitespaceFilter(Filter):
     """ """
 

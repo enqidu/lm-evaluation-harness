@@ -12,6 +12,7 @@ FILTER_REGISTRY = {
     "majority_vote": selection.MajorityVoteFilter,
     "take_first_k": selection.TakeKFilter,
     "remove_whitespace": extraction.WhitespaceFilter,
+    "remove_parenthesis" : extraction.ParenthesisFilter,
     "lowercase": transformation.LowercaseFilter,
     "uppercase": transformation.UppercaseFilter,
     "map": transformation.MapFilter,

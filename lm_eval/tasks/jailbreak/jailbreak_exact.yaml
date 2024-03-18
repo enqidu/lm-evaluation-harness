@@ -12,7 +12,6 @@ metric_list:
 filter_list:
   - name: "get-answer"
     filter:
-      - !function utils.ParenthesisFilter
       - function: "regex"
         # starts with A-D excluding leading spaces
         # original implementation uses a.startswith(b)
