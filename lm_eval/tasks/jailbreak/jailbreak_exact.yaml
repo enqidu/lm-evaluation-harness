@@ -12,11 +12,11 @@ metric_list:
 filter_list:
   - name: "get-answer"
     filter:
-      - function: "regex"
-        # starts with A-D excluding leading spaces
-        # original implementation uses a.startswith(b)
-        # https://github.com/openai/evals/blob/305b237cdb3884c7ddb6a5d12cb184a83551fcba/evals/api.py#L84
-        regex_pattern: "^\\s*(\\(?[A-D]\\)?)"
+      - function: !function utils.MultiChoiceRegexFilter
+        group_select: -1
+        ignore_case: true
+        ignore_punctuation: true
+        regex_pattern: "(\\([A-Z]\\))"
       - function: "take_first"
 metadata:
   version: 0.0
