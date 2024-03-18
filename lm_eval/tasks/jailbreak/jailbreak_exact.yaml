@@ -12,11 +12,7 @@ metric_list:
 filter_list:
   - name: "get-answer"
     filter:
-      - function: !function utils.MultiChoiceRegexFilter
-        group_select: -1
-        ignore_case: true
-        ignore_punctuation: true
-        regex_pattern: "(\\([A-Z]\\))"
+      - function: multi_choice_regex
       - function: "take_first"
 metadata:
   version: 0.0
