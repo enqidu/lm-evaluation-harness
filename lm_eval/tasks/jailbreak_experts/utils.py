@@ -17,7 +17,8 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
             gold = 4
         instruction = f"""
 ### Instructions: {doc["Instructions"]}
-### {doc["User"]} {doc["Question"]}
+### User : {doc["User"]}  
+### Question: {doc["Question"]}
 ### Options:
 A {doc['A']}\n(B {doc["B"]}\nC {doc["C"]}\nD {doc['D']}\n
 ### Answer: The correct answer to the given problem is """
