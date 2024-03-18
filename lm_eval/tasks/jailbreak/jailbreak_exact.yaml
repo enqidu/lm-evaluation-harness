@@ -1,4 +1,4 @@
-dataset_path: dkurtskhalia/Jailbreak_Small
+dataset_path: Impel/Jailbreak_Sample
 dataset_name: default
 task: jailbreak_exact
 test_split: test
@@ -12,11 +12,12 @@ metric_list:
 filter_list:
   - name: "get-answer"
     filter:
+      - !function utils.ParenthesisFilter
       - function: "regex"
         # starts with A-D excluding leading spaces
         # original implementation uses a.startswith(b)
         # https://github.com/openai/evals/blob/305b237cdb3884c7ddb6a5d12cb184a83551fcba/evals/api.py#L84
-        regex_pattern: "^\\s*(\\(?[A-D]\\)?)"
+        regex_pattern: "^\\s*([A-D])"
       - function: "take_first"
 metadata:
   version: 0.0
