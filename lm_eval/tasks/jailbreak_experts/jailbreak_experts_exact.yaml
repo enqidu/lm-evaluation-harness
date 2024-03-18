@@ -1,0 +1,23 @@
+dataset_path: Impel/Jailbreak_Sample_Experts
+dataset_name: default
+task: jailbreak_experts_exact
+test_split: test
+output_type: generate_until
+process_docs: !function utils.process_docs
+doc_to_text: "{{question}}:"
+doc_to_target: "{{label}}"
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+filter_list:
+  - name: "get-answer"
+    filter:
+      - function: "regex"
+        # starts with A-D excluding leading spaces
+        # original implementation uses a.startswith(b)
+        # https://github.com/openai/evals/blob/305b237cdb3884c7ddb6a5d12cb184a83551fcba/evals/api.py#L84
+        regex_pattern: "^\\s*(\\(?[A-D]\\)?)"
+      - function: "take_first"
+metadata:
+  version: 0.0
+
