@@ -1,4 +1,4 @@
-dataset_path: dkurtskhalia/Jailbreak_Small
+dataset_path: Impel/Jailbreak_Sample
 dataset_name: default
 task: jailbreak_exact
 test_split: test
