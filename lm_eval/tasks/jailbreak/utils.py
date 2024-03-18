@@ -27,6 +27,7 @@ A {doc['A']}\n(B {doc["B"]}\nC {doc["C"]}\nD {doc['D']}\n
             "question": instruction,
             "choices": ["A", "B", "C", "D"],
             "gold": gold - 1,
+            "label": doc["Label"]
         }
         return out_doc
 
