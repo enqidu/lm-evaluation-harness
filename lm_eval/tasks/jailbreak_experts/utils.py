@@ -50,7 +50,8 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
             gold = 4
         instruction = f"""
 ### Instructions: {doc["Instructions"]}
-### User : {doc["User"]}  
+### User : {doc["User"]}
+### Expert Opinion: {doc['Expert']}
 ### Question: {doc["Question"]}
 ### Options:
 A {doc['A']}\n(B {doc["B"]}\nC {doc["C"]}\nD {doc['D']}\n
