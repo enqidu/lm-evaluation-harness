@@ -1,6 +1,6 @@
 from functools import partial
 from typing import List
-
+from typing import Union
 from lm_eval.api.filter import FilterEnsemble
 from lm_eval.api.registry import get_filter
 
