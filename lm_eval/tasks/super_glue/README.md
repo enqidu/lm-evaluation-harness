@@ -26,13 +26,9 @@ Homepage: https://super.gluebenchmark.com/
 }
 ```
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
 #### Groups
-
-None.
-
-#### Tags
 
 * `super-glue-lm-eval-v1`: SuperGLUE eval adapted from LM Eval V1
 * `super-glue-t5-prompt`: SuperGLUE prompt and evaluation that matches the T5 paper (if using accelerate, will error if record is included.)

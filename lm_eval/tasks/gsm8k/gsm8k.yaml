@@ -1,4 +1,4 @@
-tag:
+group:
   - math_word_problems
 task: gsm8k
 dataset_path: gsm8k

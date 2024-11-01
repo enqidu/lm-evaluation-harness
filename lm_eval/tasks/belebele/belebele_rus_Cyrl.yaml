@@ -1,5 +1,4 @@
-dataset_name: rus_Cyrl
-fewshot_split: test
-include: _default_template_yaml
-task: belebele_rus_Cyrl
-test_split: test
+"fewshot_split": "rus_Cyrl"
+"include": "_default_template_yaml"
+"task": "belebele_rus_Cyrl"
+"test_split": "rus_Cyrl"

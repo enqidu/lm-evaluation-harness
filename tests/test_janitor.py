@@ -1,4 +1,3 @@
-import os
 from collections import defaultdict
 
 from lm_eval.decontamination.janitor import (
@@ -10,41 +9,23 @@ from lm_eval.decontamination.janitor import (
 )
 
 
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-TEST_SEQUENCE = (
-    "Hello my name is Bob, I like eating pizza, chicken, chips and ice cream. Maybe I should eat some"
-    " more salad but it's so booooring. I just... like eating pizza, chicken, chips and ice cream so much."
-)
-
-JANITOR_EXPECTED = (
-    "This is a @line #containing a certain number of characters, 76 to be exact. "
-    "This is a @line #containing a certain number of characters, 76 to be exact. "
-    "This is a @line #containing a certain number of characters, 76 to be exact. "
-    "This is a @line #containing "
-    " characters, 76 to be exact. "
-    "This is a @line #containing a certain number of characters, 76 to be exact. "
-    "This is a @line #containing a certain number of characters, 76 to be exact. "
-    "This is a @line #containing a certain number of characters, 76 to be exact. "
-)
-
-JANITOR_FILTH1 = "filth lots of dirty filthy filth"
-JANITOR_FILTH2 = "filth lots of filthy dirty filth"
-
-
 def simple_ngram(sequence, n):
     ngrams = list()
     ngram = []
     for x in sequence:
-        ngram.extend([x])
+        ngram.append(x)
         if len(ngram) == n:
-            ngrams.extend([tuple(ngram)])
+            ngrams.append(tuple(ngram))
             ngram = ngram[1:]
 
     return ngrams
 
 
 def test_form_ngrams():
-    sequence = TEST_SEQUENCE
+    sequence = (
+        "Hello my name is Bob, I like eating pizza, chicken, chips and ice cream. Maybe I should eat some"
+        " more salad but it's so booooring. I just... like eating pizza, chicken, chips and ice cream so much."
+    )
 
     n_values = [1, 2, 3, 5, 13]
     for n in n_values:
@@ -55,7 +36,10 @@ def test_form_ngrams():
 
 
 def test_word_ngrams():
-    sequence = TEST_SEQUENCE
+    sequence = (
+        "Hello my name is Bob, I like eating pizza, chicken, chips and ice cream. Maybe I should eat some"
+        " more salad but it's so booooring. I just... like eating pizza, chicken, chips and ice cream so much."
+    )
 
     words = sequence.split()
 
@@ -69,7 +53,10 @@ def test_word_ngrams():
 
 
 def test_split_indices():
-    sequence = TEST_SEQUENCE
+    sequence = (
+        "Hello my name is Bob, I like eating pizza, chicken, chips and ice cream. Maybe I should eat some"
+        " more salad but it's so booooring. I just... like eating pizza, chicken, chips and ice cream so much."
+    )
 
     comparison = []
     current_word = ""
@@ -78,18 +65,12 @@ def test_split_indices():
             current_word += c
         else:
             if current_word:
-                comparison.extend([(current_word, (i - len(current_word), i - 1))])
+                comparison.append((current_word, (i - len(current_word), i - 1)))
                 current_word = ""
 
     if current_word:
-        len_sequence = len(sequence)
-        comparison.extend(
-            [
-                (
-                    current_word,
-                    (len_sequence - len(current_word), len_sequence - 1),
-                )
-            ]
+        comparison.append(
+            (current_word, (len(sequence) - len(current_word), len(sequence) - 1))
         )
         current_word = ""
 
@@ -99,7 +80,10 @@ def test_split_indices():
 
 
 def test_word_ngrams_indices():
-    sequence = TEST_SEQUENCE
+    sequence = (
+        "Hello my name is Bob, I like eating pizza, chicken, chips and ice cream. Maybe I should eat some"
+        " more salad but it's so booooring. I just... like eating pizza, chicken, chips and ice cream so much."
+    )
 
     n_values = [1, 2, 3, 5, 13]
 
@@ -116,13 +100,14 @@ def test_word_ngrams_indices():
                 tracker[ngram] = end + 1
 
                 # ignore partial word matches
-                if not (
-                    (start != 0 and sequence[start - 1] != " ")
-                    or (end != len(sequence) - 1 and sequence[end + 1] != " ")
+                if (start != 0 and sequence[start - 1] != " ") or (
+                    end != len(sequence) - 1 and sequence[end + 1] != " "
                 ):
+                    pass
+                else:
                     break
 
-            comparison.extend([(ngram, (start, end))])
+            comparison.append((ngram, (start, end)))
 
         result_to_test = list(word_ngrams_indices(sequence, n))
         assert len(result_to_test) == len(comparison)
@@ -199,6 +184,17 @@ def test_janitor2():
 
     filth = "filth"
 
+    expected_result = (
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing "
+        " characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+    )
+
     janitor = Janitor(
         ngram_n=1, window_to_remove=200, too_dirty_cutoff=10, minimum_slice_length=200
     )
@@ -211,7 +207,7 @@ def test_janitor2():
 
     result = janitor.clean_python(sequence)
     result = "".join(result)
-    assert result == JANITOR_EXPECTED
+    assert result == expected_result
 
 
 def test_janitor3():
@@ -233,6 +229,19 @@ def test_janitor3():
         "This is a @line #containing a certain number of characters, 76 to be exact. "
     )
 
+    filth = "filth lots of dirty filthy filth"
+
+    expected_result = (
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing "
+        " characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+    )
+
     janitor = Janitor(
         ngram_n=6, window_to_remove=200, too_dirty_cutoff=10, minimum_slice_length=200
     )
@@ -240,12 +249,12 @@ def test_janitor3():
     result = "".join(result)
     assert result == sequence
 
-    janitor.register_contaminant(JANITOR_FILTH1)
-    assert janitor.dirt_ngrams == {JANITOR_FILTH1}
+    janitor.register_contaminant(filth)
+    assert janitor.dirt_ngrams == {filth}
 
     result = janitor.clean_python(sequence)
     result = "".join(result)
-    assert result == JANITOR_EXPECTED
+    assert result == expected_result
 
 
 def test_janitor4():
@@ -275,6 +284,19 @@ def test_janitor4():
         "This is a @line #containing a certain number of characters, 76 to be exact. "
     )
 
+    filth = "filth lots of dirty filthy filth"
+
+    expected_result = (
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing "
+        " characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+    )
+
     janitor = Janitor(
         ngram_n=6, window_to_remove=200, too_dirty_cutoff=10, minimum_slice_length=200
     )
@@ -282,12 +304,12 @@ def test_janitor4():
     result = "".join(result)
     assert result == sequence
 
-    janitor.register_contaminant(JANITOR_FILTH1)
-    assert janitor.dirt_ngrams == {JANITOR_FILTH1}
+    janitor.register_contaminant(filth)
+    assert janitor.dirt_ngrams == {filth}
 
     result = janitor.clean_python(sequence)
     result = "".join(result)
-    assert result == JANITOR_EXPECTED
+    assert result == expected_result
 
 
 def test_janitor5():
@@ -316,7 +338,18 @@ def test_janitor5():
         "This is a @line #containing a certain number of characters, 76 to be exact. "
     )
 
-    filths = [JANITOR_FILTH1, JANITOR_FILTH2]
+    filths = ["filth lots of dirty filthy filth", "filth lots of filthy dirty filth"]
+
+    expected_result = (
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing "
+        " characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+    )
 
     janitor = Janitor(
         ngram_n=6, window_to_remove=200, too_dirty_cutoff=10, minimum_slice_length=200
@@ -331,7 +364,7 @@ def test_janitor5():
 
     result = janitor.clean_python(sequence)
     result = "".join(result)
-    assert result == JANITOR_EXPECTED
+    assert result == expected_result
 
 
 def test_janitor6():
@@ -368,7 +401,18 @@ def test_janitor6():
         "This is a @line #containing a certain number of characters, 76 to be exact. "
     )
 
-    filths = [JANITOR_FILTH1, JANITOR_FILTH2]
+    filths = ["filth lots of dirty filthy filth", "filth lots of filthy dirty filth"]
+
+    expected_result = (
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing "
+        " characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+        "This is a @line #containing a certain number of characters, 76 to be exact. "
+    )
 
     janitor = Janitor(
         ngram_n=6, window_to_remove=200, too_dirty_cutoff=10, minimum_slice_length=200
@@ -383,7 +427,7 @@ def test_janitor6():
 
     result = janitor.clean_python(sequence)
     result = "".join(result)
-    assert result == JANITOR_EXPECTED
+    assert result == expected_result
 
 
 def test_janitor7():
@@ -421,7 +465,7 @@ def test_janitor7():
         "This is a @line #containing a certain number of characters, 76 to be exact. "
     )
 
-    filths = [JANITOR_FILTH1, JANITOR_FILTH2]
+    filths = ["filth lots of dirty filthy filth", "filth lots of filthy dirty filth"]
 
     expected_result = ""
 
@@ -444,3 +488,20 @@ def test_janitor7():
 def test_janitor8():
     # This will test the save and load contams
     pass
+    # source = """   ,, I'm a very !dirty,, ,,  dirty boy. Clean me daddy. \n\nhe he he hehe heh.  lastword  """ * 2
+    # contaminant = "dirty boy. Clean he he"
+
+    # jan = Janitor(ngram_n=3)
+    # jan.register_contaminant(contaminant)
+    # cleaned = " ".join(jan.clean(source))
+    # for contam in jan.dirt_ngrams:
+    #     assert contam not in cleaned, contam
+
+    # filename = "data/saved_contam"
+    # jan.save_contamination_ngrams(filename)
+
+    # jan = Janitor(ngram_n=3)
+    # jan.load_contamination_ngrams(filename)
+    # cleaned = " ".join(jan.clean(source))
+    # for contam in jan.dirt_ngrams:
+    #     assert contam not in cleaned, contam

@@ -1,4 +1,5 @@
 from datasets import Dataset
+from sklearn.metrics import f1_score
 
 
 def copa_doc_to_text(doc: dict) -> str:
@@ -40,8 +41,6 @@ def hellaswag_process_doc(doc: Dataset) -> Dataset:
 
 
 def macro_f1_score(items):
-    from sklearn.metrics import f1_score
-
     unzipped_list = list(zip(*items))
     golds = unzipped_list[0]
     preds = unzipped_list[1]

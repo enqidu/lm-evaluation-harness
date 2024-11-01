@@ -1,4 +1,4 @@
-tag:
+group:
   - lambada_cloze
 task: lambada_openai_cloze_yaml
 dataset_path: EleutherAI/lambada_openai

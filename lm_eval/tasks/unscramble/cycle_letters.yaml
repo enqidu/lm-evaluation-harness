@@ -1,4 +1,4 @@
-tag:
+group:
   - unscramble
 task: cycle_letters
 dataset_path: EleutherAI/unscramble

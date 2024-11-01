@@ -5,7 +5,8 @@ doc_to_target: ' {{translation["de"]}}'
 doc_to_text: 'English phrase: {{translation["en"]}}
 
   German phrase:'
-tag:
+group:
+- generate_until
 - translation
 - wmt16
 - gpt3_translation_benchmarks

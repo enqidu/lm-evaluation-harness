@@ -1,5 +1,5 @@
 include: commonsense.yaml
-tag:
+group:
   - hendrycks_ethics
 task: ethics_virtue
 dataset_name: virtue

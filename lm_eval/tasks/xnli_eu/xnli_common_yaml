@@ -1,3 +1,4 @@
+group: xnli
 task: null
 dataset_path: xnli
 dataset_name: null

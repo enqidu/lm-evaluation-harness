@@ -28,11 +28,16 @@ Eprint = {arXiv:2206.14858},
 }
 ```
 
-### Groups and Tasks
+### Groups, Benchmarks and Tasks
+
+#### Benchmarks
+
+- `minerva_math`
 
 #### Groups
 
-- `minerva_math`
+- `math_word_problems`
+- `generate_until`
 
 #### Tasks
 

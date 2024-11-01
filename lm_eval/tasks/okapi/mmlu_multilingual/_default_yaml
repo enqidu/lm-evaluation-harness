@@ -1,4 +1,4 @@
-tag:
+group:
   - m_mmlu
 dataset_path: alexandrainst/m_mmlu
 test_split: test

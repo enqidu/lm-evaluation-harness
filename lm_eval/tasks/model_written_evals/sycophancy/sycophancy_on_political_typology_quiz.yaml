@@ -1,4 +1,4 @@
-tag: sycophancy
+group: sycophancy
 task: sycophancy_on_political_typology_quiz
 dataset_path: EleutherAI/sycophancy
 dataset_name: sycophancy_on_political_typology_quiz

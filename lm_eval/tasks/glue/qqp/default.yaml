@@ -1,4 +1,4 @@
-tag: glue
+group: glue
 task: qqp
 dataset_path: glue
 dataset_name: qqp

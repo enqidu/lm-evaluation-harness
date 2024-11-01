@@ -1,3 +1,4 @@
+group: xcopa
 task: xcopa_et
 dataset_path: xcopa
 dataset_name: et

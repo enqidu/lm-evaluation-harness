@@ -29,13 +29,9 @@ Homepage: https://allenai.org/data/arc
 }
 ```
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
 #### Groups
-
-None.
-
-#### Tags
 
 * `ai2_arc`: Evaluates `arc_easy` and `arc_challenge`
 

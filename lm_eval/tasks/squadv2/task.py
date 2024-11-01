@@ -13,7 +13,6 @@ also determine when no answer is supported by the paragraph and abstain from ans
 
 Homepage: https://rajpurkar.github.io/SQuAD-explorer/
 """
-
 from functools import partial
 from math import exp
 
@@ -37,9 +36,7 @@ _CITATION = """
 
 
 def _squad_metric(predictions, references):
-    import evaluate
-
-    squad_metric = evaluate.load("squad_v2")
+    squad_metric = datasets.load_metric("squad_v2")
     return squad_metric.compute(predictions=predictions, references=references)
 
 
@@ -54,7 +51,7 @@ class SQuAD2(ConfigurableTask):
     DATASET_PATH = "squad_v2"
     DATASET_NAME = None
 
-    def __init__(self, config=None):
+    def __init__(self):
         super().__init__(config={"metadata": {"version": self.VERSION}})
 
     # HF changed squad on us so we have to make sure we aren't running the old one

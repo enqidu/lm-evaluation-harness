@@ -1,4 +1,4 @@
-tag: glue
+group: glue
 task: mnli
 dataset_path: glue
 dataset_name: mnli

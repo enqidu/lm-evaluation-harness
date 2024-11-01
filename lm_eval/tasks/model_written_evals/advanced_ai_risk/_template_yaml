@@ -1,4 +1,4 @@
-tag: advanced_ai_risk
+group: advanced_ai_risk
 dataset_path: EleutherAI/advanced_ai_risk
 output_type: multiple_choice
 validation_split: validation

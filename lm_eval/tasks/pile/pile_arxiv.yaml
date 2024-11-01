@@ -1,3 +1,5 @@
+group:
+  - pile
 task: pile_arxiv
 dataset_path: EleutherAI/pile
 dataset_name: pile_arxiv

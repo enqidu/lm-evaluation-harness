@@ -1,5 +1,4 @@
-dataset_name: wol_Latn
-fewshot_split: test
-include: _default_template_yaml
-task: belebele_wol_Latn
-test_split: test
+"fewshot_split": "wol_Latn"
+"include": "_default_template_yaml"
+"task": "belebele_wol_Latn"
+"test_split": "wol_Latn"

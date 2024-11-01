@@ -1,5 +1,4 @@
-dataset_name: fin_Latn
-fewshot_split: test
-include: _default_template_yaml
-task: belebele_fin_Latn
-test_split: test
+"fewshot_split": "fin_Latn"
+"include": "_default_template_yaml"
+"task": "belebele_fin_Latn"
+"test_split": "fin_Latn"

@@ -1,4 +1,4 @@
-tag:
+group:
   - super-glue-t5-prompt
 task: super_glue-multirc-t5-prompt
 dataset_path: super_glue

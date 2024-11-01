@@ -24,9 +24,9 @@ Homepage: https://github.com/hitz-zentroa/xnli-eu
 }
 ```
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
-#### Tags
+#### Groups
 
 * `xnli_eu_mt_native`: Includes MT and Native variants of the XNLIeu dataset.
 

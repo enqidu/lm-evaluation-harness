@@ -1,4 +1,4 @@
-tag:
+group:
   - super-glue-lm-eval-v1
 task: multirc
 dataset_path: super_glue

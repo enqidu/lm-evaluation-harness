@@ -20,9 +20,9 @@ This benchmark is constructed both from openly available datasets, as well as ne
 }
 ```
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
-#### Tags
+#### Groups
 
 - `french_bench`: All tasks (non-perplexity based)
 - `french_bench_gen`: All official generative tasks

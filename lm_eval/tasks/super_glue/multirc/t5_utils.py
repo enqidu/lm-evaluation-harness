@@ -1,6 +1,7 @@
 import collections
 
 import numpy as np
+import sklearn.metrics
 
 
 def f1(predictions, references):  # This is a passthrough function
@@ -18,12 +19,10 @@ def f1(predictions, references):  # This is a passthrough function
 
 
 def agg_f1(items):
-    from sklearn.metrics import f1_score
-
     predictions, references = zip(*items)
     references, predictions = np.asarray(references), np.asarray(predictions)
 
-    return f1_score(references, predictions)
+    return sklearn.metrics.f1_score(references, predictions)
 
 
 def em(predictions, references):  # This is a passthrough function

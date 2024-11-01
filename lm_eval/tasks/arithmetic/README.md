@@ -27,9 +27,9 @@ Homepage: https://github.com/openai/gpt-3/tree/master/data
 }
 ```
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
-#### Tags
+#### Groups
 
 * `arithmetic`: Evaluates `1dc` to `5ds`
 

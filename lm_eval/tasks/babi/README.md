@@ -21,15 +21,11 @@ Homepage: https://github.com/facebookarchive/bAbI-tasks
 }
 ```
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
 #### Groups
 
 * Not part of a group yet
-
-#### Tags
-
-* No tags applied.
 
 #### Tasks
 

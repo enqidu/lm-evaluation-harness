@@ -1,4 +1,4 @@
-tag: glue
+group: glue
 task: cola
 dataset_path: glue
 dataset_name: cola

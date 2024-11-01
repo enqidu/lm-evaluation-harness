@@ -1,4 +1,4 @@
-tag:
+group:
   - french_bench
   - french_bench_mc
 task: french_bench_arc_challenge

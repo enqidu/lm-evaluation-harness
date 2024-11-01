@@ -1,4 +1,4 @@
-tag: sycophancy
+group: sycophancy
 task: sycophancy_on_nlp_survey
 dataset_path: EleutherAI/sycophancy
 dataset_name: sycophancy_on_nlp_survey

@@ -1,4 +1,4 @@
-tag:
+group:
   - freebase
 task: webqs
 dataset_path: web_questions

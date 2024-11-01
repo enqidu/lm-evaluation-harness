@@ -43,24 +43,20 @@ Homepage: `https://github.com/hitz-zentroa/latxa`
 }
 ```
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
 #### Groups
 
-None.
-
-#### Tags
-
-* `basque-glue`: First version of the implementation. Calls all subtasks, but does not average.
+* `basque-glue`: First version of the implementation
 
 #### Tasks
 
 * `bhtc_v2`: Topic classification of news extracts with 12 categories.
-* `bec2016eu`: Sentiment analysis on tweets about the campaign for the 2016 Basque elections.
+* `bec`: Sentiment analysis on tweets about the campaign for the 2016 Basque elections.
 * `vaxx_stance`: Stance detection on tweets around the anti-vaccine movement.
 * `qnlieu`: Q&A NLI as in [glue/qnli](../glue/qnli).
 * `wiceu`: Word-in-Context as in [super_glue/wic](../super_glue/wic).
-* `epec_koref_bin`: Correference detection as in [super_glue/wsc](../super_glue/wsc).
+* `epec_korref_bin`: Correference detection as in [super_glue/wsc](../super_glue/wsc).
 
 ### Checklist
 

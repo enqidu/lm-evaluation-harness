@@ -1,5 +1,4 @@
-dataset_name: als_Latn
-fewshot_split: test
-include: _default_template_yaml
-task: belebele_als_Latn
-test_split: test
+"fewshot_split": "als_Latn"
+"include": "_default_template_yaml"
+"task": "belebele_als_Latn"
+"test_split": "als_Latn"

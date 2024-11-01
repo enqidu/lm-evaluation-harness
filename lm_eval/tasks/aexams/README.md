@@ -24,11 +24,11 @@ Homepage for Arabic EXAMS: [EXAMS Arabic Homepage](https://github.com/FreedomInt
 ### Citation
 
 
-### Groups, Tags, and Tasks
+### Groups and Tasks
 
 #### Groups
 
-- `aexams`: Arabic EXAMS dataset, including IslamicStudies, Biology, Science, Physics, Social subjects.
+- `EXAMS Arabic`: include IslamicStudies, Biology, Science, Physics, Social.
 
 #### Tasks
 

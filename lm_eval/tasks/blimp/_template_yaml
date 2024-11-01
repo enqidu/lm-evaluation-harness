@@ -1,3 +1,4 @@
+group: blimp
 dataset_path: blimp
 output_type: multiple_choice
 validation_split: train

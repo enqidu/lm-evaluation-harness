@@ -1,4 +1,4 @@
-tag:
+group:
   - hendrycks_ethics
 task: ethics_cm
 dataset_path: EleutherAI/hendrycks_ethics

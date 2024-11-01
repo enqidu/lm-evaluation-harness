@@ -1,7 +1,6 @@
 """
 Take in a YAML, and output all "other" splits with this YAML
 """
-
 import argparse
 import os
 
@@ -11,7 +10,7 @@ from tqdm import tqdm
 
 
 # Copy from https://github.com/iKala/ievals/blob/main/ievals/settings.py
-# from TMMLU+ official example
+# from TMMLU+ offical example
 categories = {
     "STEM": [
         "physics",
