@@ -5,6 +5,34 @@ import sys
 import unicodedata
 
 
+class ParenthesisFilter(Filter):
+    """A filter that removes leading parentheses from responses."""
+
+    def __init__(self) -> None:
+        """Initializes the ParenthesisFilter."""
+        pass
+
+    def apply(self, resps, docs):
+        """Applies the filter to remove leading parentheses from each response."""
+        def filter_set(inst):
+            filtered_resp = []
+            for resp in inst:
+                # Remove a leading opening or closing parenthesis
+                if resp.startswith("(") or resp.startswith(")"):
+                    resp = resp[1:]
+                if '### Answer:' in resp:
+                    resp = resp.split('### Answer:')[1].strip()
+
+
+                filtered_resp.append(resp)
+
+            return filtered_resp
+
+        # Apply the filter set function to each response in resps
+        filtered_resps = [filter_set(resp) for resp in resps]
+
+        return filtered_resps
+
 
 def doc_to_text(doc):
     answer_to_num = {"1": 0, "2": 1}
@@ -23,7 +51,6 @@ def doc_to_choice(doc):
     return [doc["sentence"][:idx] + opt for opt in options]
 
 def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
-                    
     def _process_doc(doc):
         answ = 'A' if doc['answer'] == '1' else 'B'
         instruction = f"""
