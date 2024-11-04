@@ -3,6 +3,8 @@ import collections
 import re
 import sys
 import unicodedata
+from lm_eval.filters.extraction import Filter, RegexFilter
+
 
 
 

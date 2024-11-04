@@ -4,6 +4,8 @@ import re
 import sys
 import unicodedata
 
+from lm_eval.filters.extraction import Filter, RegexFilter
+
 
 class ParenthesisFilter(Filter):
     """A filter that removes leading parentheses from responses."""
