@@ -9,6 +9,8 @@ import unicodedata
 from lm_eval.filters.extraction import Filter, RegexFilter
 
 
+
+
 class ParenthesisFilter(Filter):
     """A filter that removes leading parentheses from responses."""
 
@@ -24,7 +26,8 @@ class ParenthesisFilter(Filter):
                 # Remove a leading opening or closing parenthesis
                 if resp.startswith("(") or resp.startswith(")"):
                     resp = resp[1:]
-
+                if '### Answer:' in resp:
+                    resp = resp.split('### Answer:')[1].strip()
                 filtered_resp.append(resp)
 
             return filtered_resp
