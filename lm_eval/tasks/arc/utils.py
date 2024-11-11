@@ -59,7 +59,7 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
 ### Question: {doc["question"]}
 ### Options:
 {choices}
-### Answer: The correct answer to the given problem is """
+### Answer: The correct answer to the given problem is (only a letter): """
 
         out_doc = {
             "question": instruction,

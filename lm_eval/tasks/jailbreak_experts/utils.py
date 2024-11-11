@@ -24,6 +24,7 @@ class ParenthesisFilter(Filter):
                 # Remove a leading opening or closing parenthesis
                 if resp.startswith("(") or resp.startswith(")"):
                     resp = resp[1:]
+                
 
                 filtered_resp.append(resp)
 
@@ -55,7 +56,7 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
 ### Question: {doc["Question"]}
 ### Options:
 A {doc['A']}\n(B {doc["B"]}\nC {doc["C"]}\nD {doc['D']}\n
-### Answer: The correct answer to the given problem is """
+### Answer: The correct answer to the given problem is (only letter): """
 
         out_doc = {
             "question": instruction,

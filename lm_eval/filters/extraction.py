@@ -68,9 +68,6 @@ class ParenthesisFilter(Filter):
                     resp = resp[1:]
                 if '### Answer:' in resp:
                     resp = resp.split('### Answer:')[1].strip()
-
-                
-
                 filtered_resp.append(resp)
 
             return filtered_resp
